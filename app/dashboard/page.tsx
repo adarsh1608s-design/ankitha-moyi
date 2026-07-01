@@ -44,17 +44,17 @@ export default function DashboardPage() {
           Dashboard
         </p>
 
-        <h1 className="mt-3 text-5xl font-bold">
+        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
           👋 Welcome, {fullName}
         </h1>
 
-        <p className="mt-4 text-lg text-gray-400">
+        <p className="mt-4 text-base sm:text-lg text-gray-400">
           Manage your membership and premium content from one place.
         </p>
       </div>
 
       {/* Status Cards */}
-      <div className="grid gap-6 md:grid-cols-3 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
 
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
           <h2 className="text-xl font-bold">
@@ -89,14 +89,14 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Access */}
-      <h2 className="mt-12 mb-6 text-3xl font-bold">
+      <h2 className="mt-12 mb-6 text-2xl sm:text-3xl font-bold">
         Quick Access
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h3 className="text-2xl font-bold">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-8">
+          <h3 className="text-lg sm:text-2xl font-bold">
             📸 Gallery
           </h3>
 
@@ -105,8 +105,8 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h3 className="text-2xl font-bold">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-8">
+          <h3 className="text-lg sm:text-2xl font-bold">
             🎥 Videos
           </h3>
 
@@ -115,8 +115,8 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h3 className="text-2xl font-bold">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-8">
+          <h3 className="text-lg sm:text-2xl font-bold">
             💬 Chat
           </h3>
 
@@ -125,8 +125,8 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h3 className="text-2xl font-bold">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-8">
+          <h3 className="text-lg sm:text-2xl font-bold">
             👤 Profile
           </h3>
 

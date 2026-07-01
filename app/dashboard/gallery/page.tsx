@@ -79,11 +79,11 @@ const previewPremiumImages = [
   return (
     <main className="text-white">
 
-      <h1 className="text-5xl font-bold">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
         📸 Premium Gallery
       </h1>
 
-      <p className="mt-3 text-gray-400 text-lg">
+      <p className="mt-3 text-gray-400 text-base sm:text-lg">
         Free members can preview selected content.
       </p>
 
@@ -91,7 +91,7 @@ const previewPremiumImages = [
         🆓 Free Preview
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
       {[...previewFreeImages, ...freeImages].map((image, index) => (
           <div
@@ -101,7 +101,7 @@ const previewPremiumImages = [
             <img
               src={image}
               alt="Preview"
-              className="h-[420px] w-full object-cover hover:scale-105 transition duration-500"
+              className="h-[320px] sm:h-[420px] w-full object-cover hover:scale-105 transition duration-500"
             />
             <div className="p-5">
 
@@ -118,11 +118,11 @@ const previewPremiumImages = [
 
       </div>
 
-      <h2 className="mt-16 mb-6 text-3xl font-bold">
+      <h2 className="mt-16 mb-6 text-2xl sm:text-3xl font-bold">
   💎 Premium Exclusive
 </h2>
 
-<div className="grid md:grid-cols-3 gap-8">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
   {[...previewPremiumImages, ...premiumImages].map((image, index) => (
     <div
@@ -157,7 +157,7 @@ const previewPremiumImages = [
       <div className="p-5">
 
         <button
-          className="w-full rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 py-3 font-bold text-black shadow-xl hover:scale-105 transition"
+          className="w-full rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 py-3 font-bold text-black shadow-xl hover:scale-105 transition text-sm sm:text-base"
         >
           💎 Send Tip
         </button>

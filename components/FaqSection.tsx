@@ -29,8 +29,8 @@ export default function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="max-w-5xl mx-auto px-6 py-24">
-      <h2 className="text-5xl font-bold text-center text-white">
+    <section className="max-w-5xl mx-auto px-5 sm:px-6 py-16 sm:py-24">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white">
         Frequently Asked Questions
       </h2>
 
@@ -42,23 +42,23 @@ export default function FaqSection() {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 cursor-pointer"
+            className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-5 sm:p-6 cursor-pointer"
             onClick={() =>
               setOpen(open === index ? null : index)
             }
           >
             <div className="flex justify-between items-center">
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-lg sm:text-xl font-semibold text-white pr-4">
                 {faq.question}
               </h3>
 
-              <span className="text-pink-400 text-2xl">
+              <span className="text-pink-400 text-xl sm:text-2xl shrink-0">
                 {open === index ? "-" : "+"}
               </span>
             </div>
 
             {open === index && (
-              <p className="text-gray-300 mt-4">
+              <p className="text-sm sm:text-base text-gray-300 mt-4">
                 {faq.answer}
               </p>
             )}

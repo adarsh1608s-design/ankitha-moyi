@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function MembershipCard() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-24">
-      <h2 className="text-5xl font-bold text-center text-white">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white">
         Choose Your Membership
       </h2>
 
@@ -12,10 +12,10 @@ export default function MembershipCard() {
         Unlock exclusive content with the plan that suits you best.
       </p>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         {/* BASIC */}
-        <div className="rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl p-8 transition hover:scale-105">
+        <div className="rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl p-6 sm:p-8 transition hover:scale-105">
 
           <h3 className="text-3xl font-bold text-white">🌸 Basic</h3>
 
@@ -41,7 +41,7 @@ export default function MembershipCard() {
         </div>
 
         {/* VIP */}
-        <div className="relative rounded-[32px] border-2 border-pink-500 bg-gradient-to-b from-pink-500/10 to-white/5 backdrop-blur-xl p-8 scale-105 shadow-2xl">
+        <div className="relative rounded-[32px] border-2 border-pink-500 bg-gradient-to-b from-pink-500/10 to-white/5 backdrop-blur-xl p-6 sm:p-8 lg:scale-105 shadow-2xl">
 
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-pink-500 px-5 py-2 text-sm font-bold text-white">
             ⭐ MOST POPULAR
@@ -72,7 +72,7 @@ export default function MembershipCard() {
         </div>
 
         {/* ULTIMATE */}
-        <div className="rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl p-8 transition hover:scale-105">
+        <div className="rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl p-6 sm:p-8 transition hover:scale-105">
 
           <h3 className="text-3xl font-bold text-white">👑 Ultimate</h3>
 

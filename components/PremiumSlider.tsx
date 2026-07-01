@@ -17,7 +17,7 @@ export default function PremiumSlider() {
   return (
     <section className="max-w-7xl mx-auto py-20 px-6">
 
-      <h2 className="text-5xl font-bold text-center text-white">
+       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white">
         Exclusive Preview
       </h2>
 
@@ -26,9 +26,19 @@ export default function PremiumSlider() {
       </p>
 
       <Swiper
-        modules={[Autoplay]}
-        spaceBetween={24}
-        slidesPerView={3}
+  modules={[Autoplay]}
+  spaceBetween={16}
+  breakpoints={{
+    0: {
+      slidesPerView: 1.2,
+    },
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  }}
         slidesPerGroup={1}
         grabCursor={true}
         allowTouchMove={true}
@@ -47,7 +57,7 @@ export default function PremiumSlider() {
               <img
                 src={image}
                 alt=""
-                className="relative h-[650px] w-full object-cover rounded-3xl transition duration-500 group-hover:scale-105"
+                className="relative h-[420px] sm:h-[520px] lg:h-[650px] w-full object-cover rounded-3xl transition duration-500 group-hover:scale-105"
               />
 
             </div>
@@ -63,7 +73,7 @@ export default function PremiumSlider() {
           <img
             src="/images/hero5.png"
             alt=""
-            className="relative h-[650px] w-[420px] object-cover rounded-3xl blur-md"
+            className="relative h-[420px] sm:h-[520px] lg:h-[650px] w-[280px] sm:w-[340px] lg:w-[420px] object-cover rounded-3xl blur-md"
           />
 
           <div className="absolute inset-0 rounded-3xl bg-black/40 flex flex-col items-center justify-center">

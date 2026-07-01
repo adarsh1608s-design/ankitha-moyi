@@ -39,19 +39,19 @@ export default function StoriesPage() {
 
   if (loading) {
     return (
-      <main className="p-10 text-white">
+      <main className="px-5 sm:px-8 py-8 text-white">
         Loading Stories...
       </main>
     );
   }
 
   return (
-    <main className="p-10 text-white">
-      <h1 className="text-5xl font-bold mb-10">
+    <main className="px-5 sm:px-8 py-8 text-white">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10">
         🎬 Premium Stories
       </h1>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {stories.map((story, index) => (
           <div
             key={index}
@@ -60,17 +60,17 @@ export default function StoriesPage() {
             <video
               src={story}
               controls={membership === "premium"}
-              className={
-                membership === "premium"
-                  ? "w-full h-[600px] object-cover"
-                  : "w-full h-[600px] object-cover blur-md"
-              }
+             className={
+  membership === "premium"
+    ? "w-full h-[420px] sm:h-[520px] lg:h-[600px] object-cover"
+    : "w-full h-[420px] sm:h-[520px] lg:h-[600px] object-cover blur-md"
+}
             />
 
             {membership !== "premium" && (
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50">
                 <p className="text-5xl">🔒</p>
-                <p className="mt-4 text-xl font-bold">
+                <p className="mt-4 text-lg sm:text-xl font-bold text-center">
                   Premium Story
                 </p>
               </div>
