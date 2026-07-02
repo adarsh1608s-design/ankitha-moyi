@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -11,6 +10,7 @@ export default function DashboardSidebar() {
   const router = useRouter();
 
   const [membership, setMembership] = useState("free");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     async function loadProfile() {
@@ -20,19 +20,15 @@ export default function DashboardSidebar() {
 
       if (!user) return;
 
-      const { data, error } = await supabase
-  .from("profiles")
-  .select("*")
-  .eq("id", user.id)
-  .single();
+      const { data } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
 
-console.log("User ID:", user.id);
-console.log("Profile Data:", data);
-console.log("Profile Error:", error);
-
-if (data) {
-  setMembership(data.membership.trim());
-}
+      if (data) {
+        setMembership(data.membership.trim());
+      }
     }
 
     loadProfile();
@@ -45,106 +41,129 @@ if (data) {
 
   const linkClass = (href: string) =>
     pathname === href
-      ? "block rounded-2xl bg-pink-500 px-5 py-4 font-semibold text-white transition hover:bg-pink-600"
-      : "block rounded-2xl px-5 py-4 text-gray-300 transition hover:bg-white/10";
+      ? "block rounded-xl bg-pink-500 px-4 py-3 font-semibold text-white"
+      : "block rounded-xl px-4 py-3 text-gray-300 hover:bg-white/10 transition";
+
+  const MenuLinks = () => (
+    <>
+      <Link href="/dashboard" className={linkClass("/dashboard")} onClick={() => setMobileOpen(false)}>🏠 Dashboard</Link>
+
+      <Link href="/dashboard/gallery" className={linkClass("/dashboard/gallery")} onClick={() => setMobileOpen(false)}>📸 Gallery</Link>
+
+      <Link href="/dashboard/stories" className={linkClass("/dashboard/stories")} onClick={() => setMobileOpen(false)}>🎬 Stories</Link>
+
+      <Link href="/dashboard/videos" className={linkClass("/dashboard/videos")} onClick={() => setMobileOpen(false)}>🎥 Videos</Link>
+
+      <Link href="/dashboard/chat" className={linkClass("/dashboard/chat")} onClick={() => setMobileOpen(false)}>💬 Chat</Link>
+
+      <Link href="/dashboard/profile" className={linkClass("/dashboard/profile")} onClick={() => setMobileOpen(false)}>👤 Profile</Link>
+
+      <Link href="/dashboard/subscription" className={linkClass("/dashboard/subscription")} onClick={() => setMobileOpen(false)}>💳 Subscription</Link>
+
+      <Link href="/dashboard/notifications" className={linkClass("/dashboard/notifications")} onClick={() => setMobileOpen(false)}>🔔 Notifications</Link>
+
+      <Link href="/dashboard/settings" className={linkClass("/dashboard/settings")} onClick={() => setMobileOpen(false)}>⚙️ Settings</Link>
+
+      <button
+        onClick={handleLogout}
+        className="w-full text-left rounded-xl px-4 py-3 text-red-400 hover:bg-red-500/10 transition"
+      >
+        🚪 Logout
+      </button>
+    </>
+  );
 
   return (
-    <aside className="w-72 min-h-screen bg-white/5 backdrop-blur-xl border-r border-white/10 p-6 flex flex-col justify-between">
+    <>
+      {/* Mobile Top Bar */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-black/90 backdrop-blur-md border-b border-white/10 px-5 py-4">
 
-      <div>
+        <button
+          onClick={() => setMobileOpen(true)}
+          className="text-2xl text-white"
+        >
+          ☰
+        </button>
 
-        <h1 className="text-3xl font-bold text-white mb-10">
+        <h1 className="text-xl font-bold text-white">
           Ankitha<span className="text-pink-500">.</span>
         </h1>
 
-        <nav className="space-y-3">
-
-          <Link href="/dashboard" className={linkClass("/dashboard")}>
-            🏠 Dashboard
-          </Link>
-
-          <Link
-            href="/dashboard/gallery"
-            className={linkClass("/dashboard/gallery")}
-          >
-            📸 Gallery
-          </Link>
-<Link
-  href="/dashboard/stories"
-  className={linkClass("/dashboard/stories")}
->
-  🎬 Stories
-</Link>
-          <Link
-            href="/dashboard/videos"
-            className={linkClass("/dashboard/videos")}
-          >
-            🎥 Videos
-          </Link>
-
-          <Link
-            href="/dashboard/chat"
-            className={linkClass("/dashboard/chat")}
-          >
-            💬 Chat
-          </Link>
-
-          <Link
-            href="/dashboard/profile"
-            className={linkClass("/dashboard/profile")}
-          >
-            👤 Profile
-          </Link>
-
-          <Link
-            href="/dashboard/subscription"
-            className={linkClass("/dashboard/subscription")}
-          >
-            💳 Subscription
-          </Link>
-
-          <Link
-            href="/dashboard/notifications"
-            className={linkClass("/dashboard/notifications")}
-          >
-            🔔 Notifications
-          </Link>
-
-          <Link
-            href="/dashboard/settings"
-            className={linkClass("/dashboard/settings")}
-          >
-            ⚙️ Settings
-          </Link>
-
-          <button
-            onClick={handleLogout}
-            className="w-full text-left rounded-2xl px-5 py-4 text-red-400 transition hover:bg-red-500/10"
-          >
-            🚪 Logout
-          </button>
-
-        </nav>
-
+        <div className="w-6"></div>
       </div>
 
-      <div className="rounded-3xl bg-pink-500/10 border border-pink-500/30 p-5">
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 lg:hidden">
 
-        <h3 className="text-xl font-bold text-white">
-          {membership === "premium"
-            ? "💎 Premium User"
-            : "💎 Free User"}
-        </h3>
+          <aside className="w-72 h-full bg-zinc-950 p-6 overflow-y-auto">
 
-        <p className="mt-2 text-gray-300 text-sm">
-          {membership === "premium"
-            ? "Enjoy all premium features."
-            : "Upgrade your membership to unlock premium content."}
-        </p>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-white">
+                Menu
+              </h2>
 
-      </div>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="text-2xl text-white"
+              >
+                ✕
+              </button>
+            </div>
 
-    </aside>
+            <div className="space-y-2">
+              <MenuLinks />
+            </div>
+
+            <div className="mt-10 rounded-2xl bg-pink-500/10 border border-pink-500/30 p-5">
+              <h3 className="text-lg font-bold text-white">
+                {membership === "premium"
+                  ? "💎 Premium User"
+                  : "💎 Free User"}
+              </h3>
+
+              <p className="text-gray-400 text-sm mt-2">
+                {membership === "premium"
+                  ? "Enjoy all premium features."
+                  : "Upgrade to unlock premium content."}
+              </p>
+            </div>
+
+          </aside>
+
+        </div>
+      )}
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex w-72 min-h-screen bg-white/5 backdrop-blur-xl border-r border-white/10 p-6 flex-col justify-between">
+
+        <div>
+
+          <h1 className="text-3xl font-bold text-white mb-10">
+            Ankitha<span className="text-pink-500">.</span>
+          </h1>
+
+          <nav className="space-y-3">
+            <MenuLinks />
+          </nav>
+
+        </div>
+
+        <div className="rounded-3xl bg-pink-500/10 border border-pink-500/30 p-5">
+          <h3 className="text-xl font-bold text-white">
+            {membership === "premium"
+              ? "💎 Premium User"
+              : "💎 Free User"}
+          </h3>
+
+          <p className="mt-2 text-gray-300 text-sm">
+            {membership === "premium"
+              ? "Enjoy all premium features."
+              : "Upgrade to unlock premium content."}
+          </p>
+        </div>
+
+      </aside>
+    </>
   );
 }
-
